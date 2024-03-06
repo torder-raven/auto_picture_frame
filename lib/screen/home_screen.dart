@@ -12,12 +12,13 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final PageController pageController = PageController();
+  Timer? timer;
 
   @override
   void initState() {
     super.initState();
 
-    Timer.periodic(const Duration(seconds: 3), (timer) {
+    timer = Timer.periodic(const Duration(seconds: 3), (timer) {
       int? nextPage = pageController.page?.toInt();
 
       if (nextPage == null) {
@@ -58,6 +59,12 @@ class _HomeScreenState extends State<HomeScreen> {
                   ]))
               .toList()),
     );
+  @override
+  void dispose() {
+    timer?.cancel();
+    pageController.dispose();
+
+    super.dispose();
   }
 
 }
