@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:transparent_image/transparent_image.dart';
 
@@ -19,9 +18,6 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
 
     Timer.periodic(const Duration(seconds: 3), (timer) {
-      if (kDebugMode) {
-        print("tick");
-      }
       int? nextPage = pageController.page?.toInt();
 
       if (nextPage == null) {
@@ -63,4 +59,5 @@ class _HomeScreenState extends State<HomeScreen> {
               .toList()),
     );
   }
+
 }
