@@ -17,7 +17,20 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
 
     Timer.periodic(Duration(seconds: timerUnit), (timer) {
-      print("실행");
+      int? nextPage = pageController.page?.toInt();
+
+      if (nextPage == null) {
+        // 페이지 값이 없을때
+        return;
+      }
+
+      if (nextPage == 2) {
+        nextPage = 0;
+      } else {
+        nextPage++;
+      }
+
+      pageController.animateToPage(nextPage, duration: Duration(milliseconds: 500), curve: Curves.ease);
     });
   }
 
