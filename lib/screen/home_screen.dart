@@ -14,6 +14,14 @@ class _HomeScreenState extends State<HomeScreen> {
   final PageController pageController = PageController();
   Timer? timer;
 
+  final imageIds = const <String>[
+    '17cCMVL-muVacidVZO_5p-9TzcTpaXDkz',
+    '1AWoZ0fsibvFcL07KuAdvdYPUqcQWue3O',
+    '1fOTu72xKi5Phe6qw9rG9URZoGzKDvEst',
+    '1jSAiAPKjTUVUxjSBbsZOK-84gn8Lsfxq',
+    '1kmP0Rxj1RBlw-HYGWb-WuaKye6522cb5'
+  ];
+
   @override
   void initState() {
     super.initState();
@@ -25,7 +33,7 @@ class _HomeScreenState extends State<HomeScreen> {
         return;
       }
 
-      if (nextPage == 4) {
+      if (nextPage == imageIds.length - 1) {
         nextPage = 0;
       } else {
         nextPage++;
@@ -39,26 +47,24 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: PageView(
-          controller: pageController,
-          children: [
-            '17cCMVL-muVacidVZO_5p-9TzcTpaXDkz',
-            '1AWoZ0fsibvFcL07KuAdvdYPUqcQWue3O',
-            '1fOTu72xKi5Phe6qw9rG9URZoGzKDvEst',
-            '1jSAiAPKjTUVUxjSBbsZOK-84gn8Lsfxq',
-            '1kmP0Rxj1RBlw-HYGWb-WuaKye6522cb5'
-          ]
-              .map((e) => Stack(fit: StackFit.expand, children: <Widget>[
-                    const Center(child: CircularProgressIndicator()),
-                    FadeInImage.memoryNetwork(
-                      placeholder: kTransparentImage,
-                      image:
-                          'https://drive.usercontent.google.com/download?id=$e&export=download&authuser=0',
-                      fit: BoxFit.cover,
-                    ),
-                  ]))
-              .toList()),
+      body: PageView(controller: pageController, children: _getImages()),
     );
+  }
+
+  List<Widget> _getImages() {
+    return imageIds
+        .map((id) => Stack(fit: StackFit.expand, children: <Widget>[
+              const Center(child: CircularProgressIndicator()),
+              FadeInImage.memoryNetwork(
+                placeholder: kTransparentImage,
+                image:
+                    'https://drive.usercontent.google.com/download?id=$id&export=download&authuser=0',
+                fit: BoxFit.cover,
+              ),
+            ]))
+        .toList();
+  }
+
   @override
   void dispose() {
     timer?.cancel();
