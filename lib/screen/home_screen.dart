@@ -10,6 +10,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final PageController pageController = PageController();
+  Timer? timer;
 
   @override
   void initState() {
@@ -21,11 +22,15 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
+          child: GestureDetector(
         child: PageView(
           controller: pageController,
           children: buildImageWidgets([1, 2, 3]),
         ),
-      ),
+        onTap: () {
+          onClickEvent(pageController, timer);
+        },
+      )),
     );
   }
 }
@@ -33,7 +38,6 @@ class _HomeScreenState extends State<HomeScreen> {
 // Timer 생성 함수
 void createTimer(PageController pageController) {
   const int timerUnit = 2;
-
   Timer.periodic(Duration(seconds: timerUnit), (timer) {
     int? nextPage = pageController.page?.toInt();
     if (nextPage == null) {
@@ -61,4 +65,13 @@ List<Widget> buildImageWidgets(List<int> numbers) {
         ),
       )
       .toList();
+}
+
+// 일시정지 이벤트 함수
+void onClickEvent(PageController pageController, Timer? timer) {
+  if (timer != null && timer.isActive) {
+    timer.cancel();
+  } else {
+    createTimer(pageController);
+  }
 }
