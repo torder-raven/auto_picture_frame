@@ -1,3 +1,4 @@
+import 'package:dart_scope_functions/dart_scope_functions.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 
@@ -48,7 +49,7 @@ void initTimer(PageController pageController) {
 
 // PagerController 생성 함수
 void createPageController(PageController pageController) {
-  int? nextPage = pageController.page?.toInt();
+  int? nextPage = pageController.page?.let((page) => 0).toInt();
   if (nextPage == null) {
     return;
   }
