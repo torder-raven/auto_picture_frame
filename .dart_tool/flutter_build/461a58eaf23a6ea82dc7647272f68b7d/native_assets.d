@@ -1,0 +1,1 @@
+ /Users/torder/Documents/GitHub/auto_picture_frame/.dart_tool/flutter_build/461a58eaf23a6ea82dc7647272f68b7d/native_assets.yaml: 
