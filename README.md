@@ -1,16 +1,16 @@
-# auto_picture_frame
+# 📝 기능 목록
 
-A new Flutter project.
+---
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### 티오더 광고 배너
+- [] 타이머 기능
+  - [] 3가지 종류의 광고 배너를 반복해서 보여준다.
+    - [] 2초마다 광고를 자동으로 넘겨준다.
+    - [] 맨 끝 광고로 도달 하면 다시 첫 번째 뷰부터 보여준다.
+  
+- [x] 제스처 기능
+  - [x] 스와이프 기능을 구현한다. (이미 내장된 기능)
+  
+- [] 뷰
+  - [] 양옆의 광고를 미리 볼 수 있도록 해준다.
+  - [] 현재 보고 있는 광고가 몇 번째 광고인지 숫자를 보여준다.
