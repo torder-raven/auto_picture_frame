@@ -22,15 +22,11 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-          child: GestureDetector(
         child: PageView(
           controller: pageController,
           children: buildImageWidgets([1, 2, 3]),
         ),
-        onTap: () {
-          onClickEvent(pageController, timer);
-        },
-      )),
+      ),
     );
   }
 
@@ -72,13 +68,4 @@ List<Widget> buildImageWidgets(List<int> numbers) {
         ),
       )
       .toList();
-}
-
-// 일시정지 이벤트 함수
-void onClickEvent(PageController pageController, Timer? timer) {
-  if (timer != null && timer.isActive) {
-    timer.cancel();
-  } else {
-    createTimer(pageController);
-  }
 }
