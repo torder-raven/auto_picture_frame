@@ -15,7 +15,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
-    createTimer(pageController);
+    initTimer(pageController);
   }
 
   @override
@@ -38,24 +38,29 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 }
 
-// Timer 생성 함수
-void createTimer(PageController pageController) {
+// Timer 초기화 함수
+void initTimer(PageController pageController) {
   const int timerUnit = 2;
   Timer.periodic(Duration(seconds: timerUnit), (timer) {
-    int? nextPage = pageController.page?.toInt();
-    if (nextPage == null) {
-      return;
-    }
-
-    if (nextPage == 2) {
-      nextPage = 0;
-    } else {
-      nextPage++;
-    }
-
-    pageController.animateToPage(nextPage,
-        duration: Duration(milliseconds: 500), curve: Curves.ease);
+    createPageController(pageController);
   });
+}
+
+// PagerController 생성 함수
+void createPageController(PageController pageController) {
+  int? nextPage = pageController.page?.toInt();
+  if (nextPage == null) {
+    return;
+  }
+
+  if (nextPage == 2) {
+    nextPage = 0;
+  } else {
+    nextPage++;
+  }
+
+  pageController.animateToPage(nextPage,
+      duration: Duration(milliseconds: 500), curve: Curves.ease);
 }
 
 // 이미지 위젯 생성 함수
