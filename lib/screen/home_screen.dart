@@ -33,6 +33,13 @@ class _HomeScreenState extends State<HomeScreen> {
       )),
     );
   }
+
+  @override
+  void dispose() {
+    timer?.cancel();
+    pageController.dispose();
+    super.dispose();
+  }
 }
 
 // Timer 생성 함수
