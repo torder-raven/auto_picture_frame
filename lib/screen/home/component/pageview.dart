@@ -20,7 +20,7 @@ class _LandScapePageViewState extends State<LandScapePageView> {
   void initState() {
     super.initState();
     timer = Timer.periodic(const Duration(seconds: 2), (timer) {
-      int currentPage = controller.page!.toInt();
+      int currentPage = controller.page?.toInt() ?? 0;
       int nextPage = currentPage + 1;
 
       if (nextPage > imageNumberList.length - 1) {
@@ -38,7 +38,7 @@ class _LandScapePageViewState extends State<LandScapePageView> {
       children: imageNumberList
           .map(
             (e) => Image.asset(
-              e.imageToPath(),
+              e.imageNumberToPath(),
               fit: BoxFit.fitWidth,
             ),
           )
@@ -49,9 +49,7 @@ class _LandScapePageViewState extends State<LandScapePageView> {
   @override
   void dispose() {
     controller.dispose();
-    if (timer != null) {
-      timer!.cancel();
-    }
+    timer?.cancel();
     super.dispose();
   }
 }

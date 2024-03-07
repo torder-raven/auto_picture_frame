@@ -1,3 +1,3 @@
 extension Path on int {
-  String imageToPath() => 'assets/img/image_$this.jpeg';
+  String imageNumberToPath() => 'assets/img/image_$this.jpeg';
 }
